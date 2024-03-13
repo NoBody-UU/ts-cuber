@@ -13,19 +13,6 @@ export const getRandomInt = (max: number) => {
 }
 
 
-
-
-/**
- * REGLAS DE GENERACIÓN DE MOVIMIENTOS
- * 1. No se puede hacer el mismo movimiento dos veces seguidas
- * 2. No se puede hacer el movimiento inverso al anterior, Ejemplo: Si se hizo F, no se puede hacer F 
- * 3. El paso 2 aplica si si el movimiento de hace 2 pasos antes y el anterior fue un movimiento de una cara diferente al actual, Ejemplo: B F2 B'
- * 4. No se puede hacer el movimiento inverso al anterior, Ejemplo: Si se hizo F, no se puede hacer F y si se hizo F, no se puede hacer F2
- * 5. No hacer el mismo movimiento de hace dos pasos, Ejemplo: F U F B
- * 
- * hacer un función que genere un arreglo de movimientos aleatorios dependiendo del tamaño del cubo
- */
-
 export const generateScramble3x3 = (length = MINIMUM_SCRAMBLE_LENGTH_3X3) => {
   const notation = Object.values(ScrambleMove3x3);
   const exp = Object.values(ScrambleMoveType);
