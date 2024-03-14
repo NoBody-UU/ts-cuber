@@ -5,7 +5,7 @@
 
 
 body {
-  background-color: #f7fafc;
+  background-color: rgb(68 64 60)
   
 }
 
@@ -14,3 +14,26 @@ body {
     text-wrap: balance;
   }
 }
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #0E0E0F !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(251 191 36)!important;
+  border-radius: 100px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(251 191 36) !important;
+  box-shadow: 0px 0px 8px 2px rgb(251 191 36);
+  -webkit-box-shadow: 0px 0px 8px 2px rgb(251 191 36);
+  -moz-box-shadow: 0px 0px 8px 2px rgb(251 191 36);
+}
+
