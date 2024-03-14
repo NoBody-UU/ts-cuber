@@ -9,9 +9,12 @@ export default function Timer () {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      setSpacePressed(true);
-      if (event.code === 'Space' && !running) {
-        setStartTime(Date.now());
+      if (event.code === 'Space') {
+        setSpacePressed(true);
+        event.preventDefault();
+        if (!running) {
+          setStartTime(Date.now());
+        }
       }
     };
 
@@ -61,9 +64,10 @@ export default function Timer () {
 
     return { m, s, ms };
   };
-
+  // hacer que si doy espacio no se mueva la pantalla
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+
+    <div className={`flex flex-col items-center justify-center h-screen ${currentTime && currentTime > 0 ? "overflow-hidden": ""}`}>
       <h1 className={`text-9xl font-bold mb-4 ${spacePressed ? 'text-red-500' : 'text-gray-100'}`}>
         {formatTime(currentTime).m}
         <span className='text-yellow-500'>:</span>

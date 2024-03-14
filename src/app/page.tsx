@@ -1,11 +1,9 @@
 "use client";
-import { signIn, signOut, useSession } from 'next-auth/react';
-import Image from "next/image";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const { data: session } = useSession();
-  // Todo: Remove this console.log
-  console.log(session);
+  const router = useRouter();
 
   return (
      <div className=" min-h-screen flex flex-col justify-center items-center p-24">
@@ -25,13 +23,12 @@ export default function Home() {
         </h2>
         <p className="text-gray-600 mb-6">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at odio
-          id orci tincidunt hendrerit vel nec lectus.
+          id orci tincidunt hendrerit vel nec lectus. 
         </p>
-        { !session?.user ? (
-          <button
+        <button
           className="relative px-5 py-3 overflow-hidden font-medium text-red-600 bg-yellow-400 border border-yellow-500 rounded-lg shadow-inner group"
           onClick={() => {
-            signIn()
+            router.push('/dash/timer');
           }}
         >
           <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-700 group-hover:w-full ease"></span>
@@ -41,35 +38,6 @@ export default function Home() {
           <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-red-600 opacity-0 group-hover:opacity-100"></span>
           <span className="relative transition-colors duration-300 delay-200 group-hover:text-yellow-400 ease">Comenzar</span>
         </button>
-        ) : (
-    
-          <><div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <Image
-                  src={session.user.image!}
-                  alt="Avatar"
-                  width={40}
-                  height={40}
-                  className="rounded-full"></Image>
-                <p className="ml-4 text-gray-800">{session.user.name}</p>
-              </div>
-            </div>
-            <button
-              className="relative px-5 py-3 overflow-hidden font-medium text-red-600 bg-yellow-400 border border-yellow-500 rounded-lg shadow-inner group"
-              onClick={() => {
-                signOut();
-              } }
-            >
-                <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-700 group-hover:w-full ease"></span>
-                <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-700 group-hover:w-full ease"></span>
-                <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-700 group-hover:h-full ease"></span>
-                <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-700 group-hover:h-full ease"></span>
-                <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-red-600 opacity-0 group-hover:opacity-100"></span>
-                <span className="relative transition-colors duration-300 delay-200 group-hover:text-yellow-400 ease">Salir</span>
-              </button></>
-        )}
-
-        
       </div>
     </div>
   );
